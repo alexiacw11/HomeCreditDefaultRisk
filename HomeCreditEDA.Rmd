@@ -18,10 +18,12 @@ execute:
 # Business Statement
 Individuals with insufficient credit histories often struggle to receive a loan from trusted lenders. Consequently, many individuals in a similar situation are taken advantage of and ultimately exploited. Home Credit aims to create a safe loaning environment for that population while being profitable for the company. The purpose of this project is to reasonably maintain inclusivity and accessibility while predicting which applicants will repay their loans. 
 
-This will be a predictive analytics project. The likelihood of customers repaying their loans will be generated using a classification algorithm. Originally, I was interested in exploring only supervised models, however, I believe now that a black box approach would be useful to explore as well. Lastly, the target variable is whether customers will repay their loans, which is binary (yes or no).
+This will be a predictive analytics project. The likelihood of customers repaying their loans will be generated using a classification algorithm. The data contains many columns of customer demographics. For example, the client's gender, whether they have owned a car, how many children they have, their highest level of education received, etc. The target variable is whether customers repay their loans, which is binary (yes or no). 
+
+The purpose of this EDA notebook is to take a look at the data and get an initial understanding it. That means variable distributions and relationships will be explored. One of my main goals is to identify issues that may come up in the modeling process and consequently making any necessary fixes.
 
 # Exploration Tasks
-```{r, message=FALSE, eval=FALSE}
+```{r, message=FALSE, warning = FALSE}
 # Load libraries
 library(tidyverse)
 library(dplyr)
@@ -262,7 +264,9 @@ app_test <- app_test |>
 # Levels of gender don't match up 
 levels(app_train$CODE_GENDER)
 levels(app_test$CODE_GENDER)
+```
 
+```{r}
 # Add the third level for ease to test data
 app_test$CODE_GENDER <- factor(app_test$CODE_GENDER, levels = c("F", "M", "XNA"))
 ```
@@ -281,7 +285,9 @@ skim(new_train$OWN_CAR_AGE)
 
 # Checking the unique values to decide how I want to separate the bins
 unique(new_train$OWN_CAR_AGE)
+```
 
+```{r}
 # Will create 4 bins: Missing, low, medium, high and make sure column is a factor
 new_train <- new_train |> 
   mutate(OWN_CAR_AGE_BIN = as.factor(case_when(
@@ -407,7 +413,7 @@ prepped_recipe <- prep(my_recipe)
 imputed_data <- bake(prepped_recipe, new_data = new_train)
 
 # Yay! No more NAs in the data! 
-any(is.na(imputed_data))
+#any(is.na(imputed_data))
 
 # This method actually leaves out the target, so we need to add the target back to our data frame. 
 imputed_data <- imputed_data |> 
@@ -452,7 +458,7 @@ test_prepped_recipe <- prep(test_my_recipe)
 test_imputed_data <- bake(test_prepped_recipe, new_data = app_test)
 
 # Yay! No more NAs in the data! 
-any(is.na(test_imputed_data))
+#any(is.na(test_imputed_data))
 ```
 
 ### Are There More Near Zero Variance Predictors? 
@@ -557,24 +563,24 @@ Since I did some simple models, I wanted to create a more complex one that ident
 To start off, I subsetted the data 3 times. Each time, I put the data into a logistic regression model. I looked at whether or not the predictors were significant. From there, I would fine tune which variables to keep or drop. With subset 3, I was running into some issues revolved around highly correlated variables. For that reason, I separated all the numeric variables to check which ones in the group were highly correlated. Several of the home variables related to mode and median were correlated, so I ended up removing the modes. 
 
 After that work, I finally started experimenting with putting all the significant predictors in a model. 
-```{r, eval=FALSE}
+```{r}
 # First subset
 subset_data1 <- subset_data <- balanced_data[, c("TARGET", names(balanced_data)[1:21])]
 
 all.glm <- glm(TARGET ~ ., data=subset_data1, family = "binomial")
-summary(all.glm)
+#summary(all.glm)
 
 sig_subset1.glm <- glm(TARGET ~ NAME_CONTRACT_TYPE + CODE_GENDER + AMT_CREDIT + AMT_ANNUITY + AMT_GOODS_PRICE + NAME_TYPE_SUITE + NAME_EDUCATION_TYPE + NAME_FAMILY_STATUS + REGION_POPULATION_RELATIVE + DAYS_BIRTH + DAYS_REGISTRATION + DAYS_ID_PUBLISH + FLAG_EMP_PHONE + FLAG_WORK_PHONE, data=balanced_data, family = "binomial")
-summary(sig_subset1.glm)
+#summary(sig_subset1.glm)
 
 # Second subset
 subset_data2 <- subset_data <- balanced_data[, c("TARGET", names(balanced_data)[21:41])]
 
 all.glm <- glm(TARGET ~ ., data=subset_data2, family = "binomial")
-summary(all.glm)
+#summary(all.glm)
 
 sig_subset2.glm <- glm(TARGET ~ FLAG_PHONE + OCCUPATION_TYPE + REGION_RATING_CLIENT + WEEKDAY_APPR_PROCESS_START + HOUR_APPR_PROCESS_START + REG_CITY_NOT_LIVE_CITY + EXT_SOURCE_1 + EXT_SOURCE_2 + ENTRANCES_AVG + FLOORSMAX_AVG, data=balanced_data, family = "binomial")
-summary(sig_subset2.glm)
+#summary(sig_subset2.glm)
 
 # Third subset
 subset_data3 <- subset_data <- balanced_data[, c("TARGET", names(balanced_data)[42:66])]
@@ -591,7 +597,7 @@ numeric_subset_data3 <- subset_data3 |>
          AMT_REQ_CREDIT_BUREAU_QRT, AMT_REQ_CREDIT_BUREAU_YEAR)
 ```
 
-```{r}
+```{r, fig.width=10, fig.height=8,}
 # Calculate the correlation matrix (exclude the TARGET column)
 cor_matrix <- cor(numeric_subset_data3, use = "complete.obs")  # Exclude TARGET
 
@@ -626,7 +632,7 @@ all.glm <- glm(TARGET ~ NAME_CONTRACT_TYPE + CODE_GENDER + AMT_CREDIT + AMT_ANNU
                 AMT_REQ_CREDIT_BUREAU_YEAR, 
               data = balanced_data, 
               family = "binomial")
-summary(all.glm)
+#summary(all.glm)
 
 # In the final one NAME_TYPE_SUITE not signifcant, HOUR_APPR_PROCESS_START, 
 # WALLSMATERIAL, AMT_REQ_CREDIT_BUREAU_MON, AMT_REQ_CREDIT_BUREAU_QRT
