@@ -6,9 +6,9 @@ Individuals with insufficient credit histories often struggle to receive a loan 
 
 ## Project Objectives
 <ul>
-<li>Deliverable of EDA findings and model predictions.
-<li>GitHub repository deliverable, including code and README files. 
-<li> Visually appealing slide deck that clearly conveys project findings. </ul>
+<li>Deliverable of EDA findings and model predictions
+<li>GitHub repository deliverable, including code and README files
+<li> Visually appealing slide deck that clearly conveys project findings </ul>
 
 ## Business Value of the Solution
 The advantages of predicting trusted borrowers are as follows.
@@ -46,7 +46,7 @@ The advantages of predicting trusted borrowers are as follows.
 <li>BART (AUC: 0.70113)
 <li>Logistic Regression (AUC: 0.67896)
 <li>Extra Trees (AUC: 0.69339)</ul>
-<li>Computation Time: The ensemble model required 1.05 hours to train, balancing complexity and accuracy.
+<li>Computation Time: The ensemble model required 1.05 hours to train, balancing complexity and accuracy
 </ul>
 
 ## What I learned
