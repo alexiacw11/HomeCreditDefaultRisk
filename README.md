@@ -8,13 +8,13 @@ Individuals with insufficient credit histories often struggle to receive a loan 
 <ul>
 <li>Deliverable of EDA findings and model predictions.
 <li>GitHub repository deliverable, including code and README files. 
-<li> Visually appealing slide deck that clearly conveys project findings. <\ul>
+<li> Visually appealing slide deck that clearly conveys project findings. </ul>
 
 ## Business Value of the Solution
 The advantages of predicting trusted borrowers are as follows.
 <ul>
 <li>The company can better determine who to accept into the program, potentially saving Home Credit substantial amounts of money.
-<li> The underserved population can have a positive loan experience through curated repayment calendars.<\ul>
+<li> The underserved population can have a positive loan experience through curated repayment calendars.</ul>
   
 ## Personal Contribution to the Project
 <ul>
@@ -26,7 +26,7 @@ The advantages of predicting trusted borrowers are as follows.
   <li>Random Forest
   <li>Extra Trees
   <li>Ensemble Methods
-<li> Ensemble Model Slide of the Presentation <\ul>
+<li> Ensemble Model Slide of the Presentation </ul>
 
   
 ## Difficulties Encountered Along the Way
