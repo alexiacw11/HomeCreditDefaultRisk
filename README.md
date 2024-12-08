@@ -38,21 +38,24 @@ The advantages of predicting trusted borrowers are as follows.
   6.    Potential Outliers and Noise: Some numerical features contained extreme values that were potentially outliers or data entry errors. These values can distort model training, especially in distance-based or sensitive algorithms, necessitating careful inspection and possible transformation or filtering.
 
 ## Solution
-All attempted models were trained on just 5% of the data
-The best performing was an ensemble model that achieved an AUC of 0.70311
-The ensemble combined predictions from:
-Random Forest (AUC: 0.69877)
-BART (AUC: 0.70113)
-Logistic Regression (AUC: 0.67896)
-Extra Trees (AUC: 0.69339)
-Computation Time: The ensemble model required 1.05 hours to train, balancing complexity and accuracy.
+<ul>
+<li>All attempted models were trained on just 5% of the data
+<li>The best performing was an ensemble model that achieved an AUC of 0.70311
+<li>The ensemble combined predictions from: <ul>
+<li>Random Forest (AUC: 0.69877)
+<li>BART (AUC: 0.70113)
+<li>Logistic Regression (AUC: 0.67896)
+<li>Extra Trees (AUC: 0.69339)</ul>
+<li>Computation Time: The ensemble model required 1.05 hours to train, balancing complexity and accuracy.
+</ul>
 
-## What I learned 
-The modeling process is trial and error
-Trying many models is crucial
-Including additional data does not always have a high return on investment
-Feature selection and engineering were key to improving model performance
-It is important to do robustness checks throughout the modeling process to ensure changes made are improving results
-The importance of being creative when interpreting business results, especially in a presentation 
-
+## What I learned
+<ul>
+<li>The modeling process is trial and error
+<li>Trying many models is crucial
+<li>Including additional data does not always have a high return on investment
+<li>Feature selection and engineering were key to improving model performance
+<li>It is important to do robustness checks throughout the modeling process to ensure changes made are improving results
+<li>The importance of being creative when interpreting business results, especially in a presentation 
+</ul>
 
