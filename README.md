@@ -19,13 +19,13 @@ The advantages of predicting trusted borrowers are as follows.
 ## Personal Contribution to the Project
 <ul>
 <li>Reported EDA Including Feature Engineering 
-<li>Models
+<li>Models <ul>
   <li>Naive Bayes
   <li>LightGBM Boosted Trees
   <li>Bayesian Additive Regression Trees - BART
   <li>Random Forest
   <li>Extra Trees
-  <li>Ensemble Methods
+  <li>Ensemble Methods</ul>
 <li> Ensemble Model Slide of the Presentation </ul>
 
   
@@ -55,7 +55,7 @@ The advantages of predicting trusted borrowers are as follows.
 <li>Trying many models is crucial
 <li>Including additional data does not always have a high return on investment
 <li>Feature selection and engineering were key to improving model performance
-<li>It is important to do robustness checks throughout the modeling process to ensure changes made are improving results
+<li>Robustness checks throughout the modeling process are essential to ensure changes made are improving results
 <li>The importance of being creative when interpreting business results, especially in a presentation 
 </ul>
 
